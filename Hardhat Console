@@ -1,0 +1,18 @@
+1️⃣ Start Hardhat Console
+npx hardhat console --network localhost
+
+2️⃣ Import Ethers
+const { ethers } = require("hardhat");
+
+3️⃣ Get the Signers (Your Wallet Address)
+const [deployer] = await ethers.getSigners();
+console.log("Deployer Address:", deployer.address);
+
+4️⃣ Attach to Your Deployed Contract
+Make sure to replace the contract address with the actual deployed contract address:
+const contract = await ethers.getContractAt("KEVOH", "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512");
+console.log("Contract Attached at:", contract.target);
+
+5️⃣ Get Deployer’s Token Balance (Fix ReferenceError)
+let balance = await contract.balanceOf(deployer.address);
+console.log("Deployer's Token Balance:", ethers.formatUnits(balance, 18));
